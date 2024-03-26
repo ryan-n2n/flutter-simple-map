@@ -26,8 +26,7 @@ class SimpleMap extends StatefulWidget {
   _SimpleMapState createState() => _SimpleMapState();
 }
 
-class _SimpleMapState extends State<SimpleMap>
-    with TickerProviderStateMixin, WidgetsBindingObserver {
+class _SimpleMapState extends State<SimpleMap> with TickerProviderStateMixin, WidgetsBindingObserver {
   AnimationController? _pointAnimation;
   AnimationController? _transformAnimation;
 
@@ -93,7 +92,7 @@ class _SimpleMapState extends State<SimpleMap>
       builder: (context, constraints) {
         if (_size != constraints.maxWidth) {
           _size = constraints.maxWidth;
-          _mapIcon ??= _buildMap(constraints.maxWidth);
+          _mapIcon = _buildMap(constraints.maxWidth);
           widget.controller.size = Size.square(constraints.maxWidth);
         }
 
@@ -189,9 +188,7 @@ class _SimpleMapState extends State<SimpleMap>
   List<Widget> _buildMarkers() {
     return widget.controller.markers.map((m) {
       final offset = widget.controller.project(m.lat, m.lng);
-      return widget.options.markerBuilder != null
-          ? widget.options.markerBuilder!(m, offset)
-          : defaultMarkerBuilder(m, offset);
+      return widget.options.markerBuilder != null ? widget.options.markerBuilder!(m, offset) : defaultMarkerBuilder(m, offset);
     }).toList();
   }
 }
@@ -212,6 +209,5 @@ class _SimpleMapPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) => controller.render(canvas, size);
 
   @override
-  bool shouldRepaint(_SimpleMapPainter oldDelegate) =>
-      true; // !identical(this, oldDelegate);
+  bool shouldRepaint(_SimpleMapPainter oldDelegate) => true; // !identical(this, oldDelegate);
 }

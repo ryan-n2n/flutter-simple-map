@@ -9,6 +9,7 @@ class SimpleMapMarker {
     this.radius = 10.0,
     this.color = _kColorWhite,
     this.image,
+    this.otherInfo,
   });
 
   /// Latitude
@@ -25,6 +26,9 @@ class SimpleMapMarker {
 
   /// Marker image
   final ImageProvider? image;
+
+  /// Other Info
+  final dynamic otherInfo;
 
   @override
   String toString() {
@@ -44,33 +48,13 @@ class SimpleMarkerPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final path = Path()
       ..moveTo(size.width * 1.000004, size.height * 0.4109621)
-      ..cubicTo(
-          size.width * 1.000004,
-          size.height * 0.1865600,
-          size.width * 0.7801875,
-          size.height * 0.004645000,
-          size.width * 0.5090333,
+      ..cubicTo(size.width * 1.000004, size.height * 0.1865600, size.width * 0.7801875, size.height * 0.004645000, size.width * 0.5090333,
           size.height * 0.004645000)
-      ..cubicTo(
-          size.width * 0.2378804,
-          size.height * 0.004645000,
-          size.width * 0.01806642,
-          size.height * 0.1865600,
-          size.width * 0.01806642,
+      ..cubicTo(size.width * 0.2378804, size.height * 0.004645000, size.width * 0.01806642, size.height * 0.1865600, size.width * 0.01806642,
           size.height * 0.4109621)
-      ..cubicTo(
-          size.width * 0.01806642,
-          size.height * 0.6574069,
-          size.width * 0.3166987,
-          size.height * 0.8147586,
-          size.width * 0.5090333,
+      ..cubicTo(size.width * 0.01806642, size.height * 0.6574069, size.width * 0.3166987, size.height * 0.8147586, size.width * 0.5090333,
           size.height * 0.9723000)
-      ..cubicTo(
-          size.width * 0.7013667,
-          size.height * 0.8147586,
-          size.width * 1.000004,
-          size.height * 0.6574069,
-          size.width * 1.000004,
+      ..cubicTo(size.width * 0.7013667, size.height * 0.8147586, size.width * 1.000004, size.height * 0.6574069, size.width * 1.000004,
           size.height * 0.4109621)
       ..close();
 
@@ -107,9 +91,7 @@ Widget defaultMarkerBuilder(SimpleMapMarker m, Offset offset) {
           height: size.width - border * 2,
           margin: const EdgeInsets.only(top: border),
           decoration: BoxDecoration(
-            image: m.image != null
-                ? DecorationImage(image: m.image!, fit: BoxFit.cover)
-                : null,
+            image: m.image != null ? DecorationImage(image: m.image!, fit: BoxFit.cover) : null,
             shape: BoxShape.circle,
             color: _kColorWhite.withOpacity(0.7),
           ),
