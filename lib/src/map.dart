@@ -90,11 +90,11 @@ class _SimpleMapState extends State<SimpleMap> with TickerProviderStateMixin, Wi
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (_size != constraints.maxWidth) {
-          _size = constraints.maxWidth;
-          _mapIcon = _buildMap(constraints.maxWidth);
-          widget.controller.size = Size.square(constraints.maxWidth);
-        }
+        // if (_size != constraints.maxWidth) {
+        _size = constraints.maxWidth;
+        _mapIcon = _buildMap(constraints.maxWidth);
+        widget.controller.size = Size.square(constraints.maxWidth);
+        // }
 
         Widget mapIcon = _mapIcon!;
 
